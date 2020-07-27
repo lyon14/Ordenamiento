@@ -15,6 +15,7 @@ nodo* ultimo = NULL;
 
 void Insertar(int v);
 void Ordenamiento();
+void recorrerPU();
 
 
 int main(){
@@ -27,6 +28,8 @@ int main(){
   Insertar(11);
   Insertar(3);
   Insertar(1);
+  Ordenamiento();
+  recorrerPU();
 
   
   return 0;
@@ -53,4 +56,40 @@ void Insertar(int v){
 
 void Ordenamiento(){
   
+  nodo* actual=(nodo*)malloc(sizeof(nodo));
+  nodo* sgte=(nodo*)malloc(sizeof(nodo));
+  actual=primero;
+  int aux;
+  
+  while(actual!=NULL){
+    sgte = actual->siguiente;
+    while(sgte!=NULL){
+      if(actual->dato > sgte->dato){
+        aux = sgte->dato;
+        sgte->dato = actual->dato;
+        actual->dato = aux;
+      }
+      sgte = sgte->siguiente;
+    }
+    actual = actual->siguiente;
+    
+  }
+}
+
+void recorrerPU(){
+
+  nodo* actual=(nodo*)malloc(sizeof(nodo));
+
+  actual=primero;
+
+  if(primero!=NULL){
+    while(actual!=NULL){
+      printf("%d \n ",actual->dato);
+      actual=actual->siguiente;
+    }
+    
+  }else{
+    printf("La lista está vacía.\n  " );
+  }
+
 }
